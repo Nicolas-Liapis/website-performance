@@ -2,7 +2,8 @@
 
 var gulp = require('gulp'),
   concat = require('gulp-concat'),
-  uglify = require('gulp-uglify'),
+  //uglify = require('gulp-uglify'),
+  minify = require('gulp-minify'),
   clean = require('gulp-clean-css'),
   rename = require('gulp-rename');
 
@@ -31,6 +32,7 @@ gulp.task("minifyCss", function() {
 
 gulp.task("concatScripts", function() {
   gulp.src([
+  'js/jquery.js',
   'js/fastclick.js',
   'js/foundation.js',
   'js/foundation.equalizer.js',
@@ -42,7 +44,7 @@ gulp.task("concatScripts", function() {
 
 gulp.task("minifyScripts", function() {
   gulp.src("js/app.js")
-    .pipe(uglify())
+    .pipe(minify())
     .pipe(rename('app.min.js'))
     .pipe(gulp.dest('js'));
 });
