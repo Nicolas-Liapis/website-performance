@@ -10,7 +10,6 @@ gulp.task("concatCss", function() {
   gulp.src([
   'css/normalize.css',
   'css/foundation.css',
-  'css/ubuntu.css',
   'css/basics.css',
   'css/menu.css',
   'css/footer.css',
@@ -32,6 +31,7 @@ gulp.task("minifyCss", function() {
 gulp.task("concatScripts", function() {
   gulp.src([
   'js/jquery.js',
+  'js/lazyload.min.js',
   'js/fastclick.js',
   'js/foundation.js',
   'js/foundation.equalizer.js',
