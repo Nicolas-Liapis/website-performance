@@ -4,7 +4,10 @@ var gulp = require('gulp'),
   concat = require('gulp-concat'),
   uglify = require('gulp-uglify'),
   clean = require('gulp-clean-css'),
-  rename = require('gulp-rename');
+  rename = require('gulp-rename'),
+  purify = require('gulp-purifycss');
+
+
 
 gulp.task("concatCss", function() {
   gulp.src([
@@ -19,6 +22,14 @@ gulp.task("concatCss", function() {
   ])
   .pipe(concat("app.css"))
   .pipe(gulp.dest("css"));
+});
+
+gulp.task('purifyCss', function() {
+  return gulp.src('css/app.min.css')
+    .pipe(purify(['js/*.js', './*.html']))
+    .pipe(clean())
+    .pipe(rename('app.min.pure.css'))
+    .pipe(gulp.dest('./css/'));
 });
 
 gulp.task("minifyCss", function() {
