@@ -32,29 +32,18 @@ gulp.task('purifyCss', function() {
     .pipe(gulp.dest('./css/'));
 });
 
-gulp.task("minifyCss", function() {
-  gulp.src("css/app.css")
-    .pipe(clean())
-    .pipe(rename('app.min.css'))
-    .pipe(gulp.dest('css'));
-});
 
-gulp.task("concatScripts", function() {
+gulp.task("cleanScripts", function() {
   gulp.src([
-  'js/jquery.js',
-  'js/lazyload.min.js',
+  'js/lazyload.js',
+  'js/jquery.js',  
   'js/fastclick.js',
   'js/foundation.js',
   'js/foundation.equalizer.js',
   'js/foundation.reveal.js'
   ])
   .pipe(concat("app.js"))
+  .pipe(uglify())
+  .pipe(rename('app.min.js'))
   .pipe(gulp.dest("js"));
-});
-
-gulp.task("minifyScripts", function() {
-  gulp.src("js/app.js")
-    .pipe(uglify())
-    .pipe(rename('app.min.js'))
-    .pipe(gulp.dest('js'));
 });
