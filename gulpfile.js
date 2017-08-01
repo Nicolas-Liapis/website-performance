@@ -5,8 +5,16 @@ var gulp = require('gulp'),
   uglify = require('gulp-uglify'),
   clean = require('gulp-clean-css'),
   rename = require('gulp-rename'),
-  purify = require('gulp-purifycss');
+  purify = require('gulp-purifycss'),
+  spritesmith = require('gulp.spritesmith');
 
+gulp.task('sprite', function () {
+  var spriteData = gulp.src('img/avatars/*.jpg').pipe(spritesmith({
+    imgName: 'sprite.png',
+    cssName: 'sprite.css'
+  }));
+  return spriteData.pipe(gulp.dest('./img/sprite/'));
+});
 
 
 gulp.task("concatCss", function() {
@@ -18,14 +26,15 @@ gulp.task("concatCss", function() {
   'css/footer.css',
   'css/hero.css',
   'css/photo-grid.css',
-  'css/modals.css'
+  'css/modals.css',
+  'css/sprite.css'
   ])
   .pipe(concat("app.css"))
   .pipe(gulp.dest("css"));
 });
 
 gulp.task('purifyCss', function() {
-  return gulp.src('css/app.min.css')
+  return gulp.src('css/app.css')
     .pipe(purify(['js/*.js', './*.html']))
     .pipe(clean())
     .pipe(rename('app.min.pure.css'))
@@ -35,8 +44,7 @@ gulp.task('purifyCss', function() {
 
 gulp.task("cleanScripts", function() {
   gulp.src([
-  'js/lazyload.js',
-  'js/jquery.js',  
+  'js/jquery.js',
   'js/fastclick.js',
   'js/foundation.js',
   'js/foundation.equalizer.js',
