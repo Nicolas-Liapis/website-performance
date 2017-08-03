@@ -9,9 +9,9 @@ var gulp = require('gulp'),
   spritesmith = require('gulp.spritesmith');
 
 gulp.task('sprite', function () {
-  var spriteData = gulp.src('img/avatars/*.jpg').pipe(spritesmith({
-    imgName: 'sprite.png',
-    cssName: 'sprite.css'
+  var spriteData = gulp.src('img/photos/rsz_*.jpg').pipe(spritesmith({
+    imgName: 'thumbnails.png',
+    cssName: 'thumbnails.css'
   }));
   return spriteData.pipe(gulp.dest('./img/sprite/'));
 });
@@ -48,7 +48,8 @@ gulp.task("cleanScripts", function() {
   'js/fastclick.js',
   'js/foundation.js',
   'js/foundation.equalizer.js',
-  'js/foundation.reveal.js'
+  'js/foundation.reveal.js',
+  'js/visible.js'
   ])
   .pipe(concat("app.js"))
   .pipe(uglify())
