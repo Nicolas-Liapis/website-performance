@@ -1,4 +1,4 @@
-$('body').on('click','img',function(){
+$("#visible1").click(function(){
   document.getElementById('visible1').src = "img/photos/photo1.jpg";
 })
 
